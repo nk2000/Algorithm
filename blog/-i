@@ -1,0 +1,151 @@
+I suppose •that I should record and summarise what I have learned from this course.Thus, I will get the key idea and my coding with python down.
+n class set in module __builtin__:
+
+class set(object)
+ |  set() -> new empty set object
+ |  set(iterable) -> new set object
+Last login: Sun Nov 27 10:21:54 on console
+ niukai@522  ~  python
+Python 2.7.10 (default, Jul 14 2015, 19:46:27)
+[GCC 4.2.1 Compatible Apple LLVM 6.0 (clang-600.0.39)] on darwin
+Type "help", "copyright", "credits" or "license" for more information.
+>>> help(remove)
+
+
+
+
+
+
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+NameError: name 'remove' is not defined
+>>> help
+Type help() for interactive help, or help(object) for help about object.
+>>> help(set)
+
+>>> help(set.remove)
+
+>>> help(set.discard)
+
+>>> set([1,2,3,'a']
+... )
+set(['a', 1, 2, 3])
+>>> a = set([1,2,3,'a'])
+>>> a
+set(['a', 1, 2, 3])
+>>> a.remove(1)
+>>> a
+set(['a', 2, 3])
+>>> a.remove('a')
+>>> a
+set([2, 3])
+>>> help(set.remove)
+
+>>> a.remove(1)
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>KeyError: 1
+>>> a.discard(1)
+>>> help(np.linspace)
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+NameError: name 'np' is not defined
+>>> help(ndarray.linspace)
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+NameError: name 'ndarray' is not defined
+>>> help(scipy.linspace)
+Traceback (most recent call last):
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  File "<stdin>", line 1, in <module>
+NameError: name 'scipy' is not defined
+>>> help(scipy)
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+NameError: name 'scipy' is not defined
+>>> help(ndarray)
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+NameError: name 'ndarray' is not defined
+>>> import ndarray
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+ImportError: No module named ndarray
+>>> import scipy
+>>> help(ndarray.linspace)
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+NameError: name 'ndarray' is not defined
+>>> help(ndarray)
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+NameError: name 'ndarray' is not defined
+>>> help(scipy)
+
+>>> from ndarray import *
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+ImportError: No module named ndarray
+>>> from numpy import *
+>>> help(ndarray.linspace)
+I suppose that I should record and summarise what I have learned from this cours
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+AttributeError: type object 'numpy.ndarray' has no attribute 'linspace'
+>>> from pandas import Series
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+ImportError: No module named pandas
+I suppose that I should record and summarise what I have learned from this course.Thus, I will get the key idea and my coding with python down.
+
+##Why Study Algorithms?
+- important for all other important for all otherimportant for all other branches of computer science
+-  plays a key role in modern technological innova)on
+-  provides novel “lens” on processes outside of computer science and technology
+-  challenging (i.e., good for the brain!)
+-  fun
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+
+
+##Why Study Algorithms?
+- important for all other important for all otherimportant for all other branches of computer science
+-  plays a key role in modern technological innova)on
+-  provides novel “lens” on processes outside of computer science and technology
+-  challenging (i.e., good for the brain!)
+-  fun
