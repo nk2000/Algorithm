@@ -1,0 +1,233 @@
+package org.nk.offer;
+
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.Set;
+import java.util.Stack;
+
+public class MyTest {
+	
+	//对应相应的操作
+	private String[] operater = {"x倒满","y倒满","x倒入y","y倒入x","x倒空","y倒空"};
+	private ArrayList<String> array = new ArrayList<>();
+	
+	public ArrayList<String> fun(int x, int y, int z){
+		
+		//保存操作中得到的结果，如果重复，则停止搜索
+		Set<Integer> set = new HashSet<>();
+		//只保留操作成功的操作，故把搜索过程的操作临时保存在Stack中，如果找到正确操作了，再添加到ArrayList中
+		Stack<String> stack = new Stack<>();
+		
+		
+		set.add(x);
+		
+		
+		if(set.contains(z)){
+			stack.push(operater[0]);
+			while(!stack.empty()){
+				array.add(stack.pop());
+			}
+			return array;
+		}
+			
+		
+		set.add(y);
+		
+		if(set.contains(z)){
+			stack.push(operater[1]);
+			while(!stack.empty()){
+				array.add(stack.pop());
+			}
+			return array;
+		}
+		
+		if(x>y){
+			set.add(x - y);
+			stack.push(operater[0]);
+			stack.push(operater[2]);
+			if(set.contains(z)){
+				while(!stack.empty()){
+					array.add(stack.pop());
+				}
+				
+				//此时得到的是一个完全相反的步骤，利用栈，将ArrayList反转
+				for(String msg:array){
+					stack.push(msg);
+				}
+				array.clear();
+				while(!stack.empty()){
+					array.add(stack.pop());
+				}
+				return array;
+			}
+			if(function(x,y,z,x-y,y,set,1)){
+				while(!stack.empty()){
+					array.add(stack.pop());
+				}
+				
+				//此时得到的是一个完全相反的步骤，利用栈，将ArrayList反转
+				for(String msg:array){
+					stack.push(msg);
+				}
+				array.clear();
+				while(!stack.empty()){
+					array.add(stack.pop());
+				}
+				return array;
+			}
+		}else{
+			set.add(y - x);
+			stack.push(operater[1]);
+			stack.push(operater[3]);
+			if(set.contains(z)){
+				while(!stack.empty()){
+					array.add(stack.pop());
+				}
+				
+				//此时得到的是一个完全相反的步骤，利用栈，将ArrayList反转
+				for(String msg:array){
+					stack.push(msg);
+				}
+				array.clear();
+				while(!stack.empty()){
+					array.add(stack.pop());
+				}
+				return array;
+			}
+			if(function(x,y,z,x,y-x,set,2)){
+				while(!stack.empty()){
+					array.add(stack.pop());
+				}
+				
+				//此时得到的是一个完全相反的步骤，利用栈，将ArrayList反转
+				for(String msg:array){
+					stack.push(msg);
+				}
+				array.clear();
+				while(!stack.empty()){
+					array.add(stack.pop());
+				}
+				return array;
+			}
+		}
+		
+		array.add("fail");
+		return array;
+		
+		
+		
+	}
+	//operater = {0:"x倒满",1:"y倒满",2:"x倒入y",3:"y倒入x",4:"x倒空",5:"y倒空"};
+	//a为x现有的水量,b为y现有的水量
+	public boolean function(int x,int y, int z,int a, int b,Set set,int sigal){
+		Stack<String> stack = new Stack<>();
+//		System.out.println(a +"," + b);
+		if(sigal == 1){
+			if(a > y && !set.contains(a - y)){
+				if(b == y)
+					stack.push(operater[5]);
+				stack.push(operater[2]);
+				set.add(a-y);
+				
+				if(set.contains(z)){
+					
+					array.addAll(stack);
+					return true;
+				}
+					
+				if(function(x, y, z, a-y, y, set,1)){
+					while(!stack.empty()){
+						array.add(stack.pop());
+					}
+					return true;
+				}
+			}
+			if(a < y && !set.contains(x - y + a)){
+				if(b == x)
+					stack.push(operater[5]);
+				stack.push(operater[3]);
+				stack.push(operater[0]);
+				stack.push(operater[2]);
+				
+				int newSigal = x - (y - a);
+				if(!set.contains(newSigal)){
+					set.add(newSigal);
+					if(set.contains(z)){
+						while(!stack.empty()){
+							array.add(stack.pop());
+						}
+						return true;
+					}
+					if(function(x,y,z,newSigal,y,set,1)){
+						while(!stack.empty()){
+							array.add(stack.pop());
+						}
+						return true;
+					}
+				}
+				
+			}
+		}
+		//operater = {0:"x倒满",1:"y倒满",2:"x倒入y",3:"y倒入x",4:"x倒空",5:"y倒空"};
+		if(sigal == 2){
+			if(b > x && !set.contains(b - x)){
+				set.add(b-x);
+				if(a == x)
+					stack.push(operater[4]);
+				stack.push(operater[3]);
+				
+				if(set.contains(z)){
+					while(!stack.empty()){
+						array.add(stack.pop());
+					}
+					return true;
+				}
+				if(function(x, y, z, x,b - x, set,2)){
+					while(!stack.empty()){
+						array.add(stack.pop());
+					}
+					return true;
+				}
+			}
+			if(b < x && !set.contains(y - x + b)){
+				if(a == x)
+					stack.push(operater[4]);
+				stack.push(operater[3]);
+				stack.push(operater[1]);
+				stack.push(operater[3]);
+				
+				int newSignal = y - (x - b);
+//				System.out.println("new " + newSignal);
+				if(!set.contains(newSignal)){
+					set.add(newSignal);
+					if(set.contains(z)){
+						while(!stack.empty()){
+							array.add(stack.pop());
+						}
+						return true;
+					}
+					if(function(x,y,z,x,newSignal,set,2)){
+						while(!stack.empty()){
+							array.add(stack.pop());
+						}
+						return true;
+					}
+				}
+			}
+		}
+		return false;
+		
+	}
+
+	public static void main(String[] args) {
+		MyTest test = new MyTest();
+		ArrayList<String> list = test.fun(3, 5, 4);
+		for(String op:list){
+			System.out.println(op);
+		}
+		
+		
+	}
+}
