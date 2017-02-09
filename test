@@ -121,6 +121,11 @@ public class MyTest {
 	}
 	//operater = {0:"x倒满",1:"y倒满",2:"x倒入y",3:"y倒入x",4:"x倒空",5:"y倒空"};
 	//a为x现有的水量,b为y现有的水量
+	//观察发现，新产生的值，总出现在x,y中容量较大的那个杯子中
+	//故使用if(!set.contains(a - y))来判断是否结束搜索，进行回溯
+	//对x,y容量进行了分类讨论
+	//对abs(x-y)与其中容量小得进行了分类讨论	
+	//sigal来区别x,y的大小	
 	public boolean function(int x,int y, int z,int a, int b,Set set,int sigal){
 		Stack<String> stack = new Stack<>();
 //		System.out.println(a +"," + b);
